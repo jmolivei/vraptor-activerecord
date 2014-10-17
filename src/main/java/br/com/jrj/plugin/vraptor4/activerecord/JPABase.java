@@ -16,8 +16,12 @@ public class JPABase implements Serializable {
 	@Inject
 	private EntityManager entityManager;
 	
-	public EntityManager getEm() {
+	public EntityManager em() {
 		return entityManager;
+	}
+	
+	public void  setEm(EntityManager em) {
+		this.entityManager = em;
 	}
 
 	protected void _save() {

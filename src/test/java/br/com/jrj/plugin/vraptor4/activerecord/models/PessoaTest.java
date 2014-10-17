@@ -6,7 +6,11 @@ import java.io.File;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.validation.constraints.AssertTrue;
 
+import junit.framework.Assert;
+
+import org.hibernate.AssertionFailure;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -45,9 +49,12 @@ new File("src/test/resources/META-INF/persistence-test.xml"),
 	
 	@Inject
 	Pessoa pessoa;
-	 
+	
+	@Inject
+	Pessoa pessoaAux;
+	
 	@Test
-	public void test() {
+	public void insertTest() {
 		
 				   
 	        pessoa.setNome("JOAO LUIS MOREIRA");
@@ -59,6 +66,20 @@ new File("src/test/resources/META-INF/persistence-test.xml"),
 	        System.out.println(pessoa.getId());
 
 	        assertNotNull(p);
+	}
+	
+	@Test
+	public void deleteTest() {
+		
+
+	        pessoaAux =  pessoa.em().find(Pessoa.class, 1L);
+	        pessoaAux.setEm(pessoa.em());
+	        
+	        pessoaAux.delete();
+	        
+	        Pessoa  p = (Pessoa) pessoa.em().find(Pessoa.class, 1L);
+	        
+	        Assert.assertEquals(null, p);
 	}
 	
 	

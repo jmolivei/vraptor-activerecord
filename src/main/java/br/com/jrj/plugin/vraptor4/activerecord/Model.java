@@ -26,6 +26,11 @@ public class Model extends JPABase {
 		return (T) this;
 	}
 	
+    public <T extends JPABase> T refresh() {
+        _refresh();
+        return (T) this;
+    }
+	
 
 	public boolean create() {
 		return _create();
