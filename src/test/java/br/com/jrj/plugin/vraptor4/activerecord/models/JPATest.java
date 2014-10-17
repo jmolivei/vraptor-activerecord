@@ -11,6 +11,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.Test;
@@ -21,26 +22,20 @@ import br.com.jrj.plugin.vraptor4.activerecord.JPABase;
 import br.com.jrj.plugin.vraptor4.activerecord.Model;
 
 @RunWith(Arquillian.class)
-public class PessoaA {
+public class JPATest {
 
 	 @Deployment
-	    public static WebArchive createDeployment() {
-	        File[] lib = Maven.resolver()
-	                .resolve("org.jboss.weld.servlet:weld-servlet:1.1.9.Final")
-	                .withTransitivity().as(File.class);
+	    public static JavaArchive createDeployment() {
 	         
-	        WebArchive jar =  ShrinkWrap.create(WebArchive.class)
+	        JavaArchive jar =  ShrinkWrap.create(JavaArchive.class)
 	            .addClass(JPA.class)
 	            .addClass(JPABase.class)
 	            .addClass(Model.class)
 	            .addClass(Pessoa.class)
-	            .addAsManifestResource("arquillian.xml")
 	            .addAsManifestResource(
-new File("src/test/resources/META-INF/persistence-teste.xml"),
+new File("src/test/resources/META-INF/persistence-test.xml"),
 "persistence.xml")
-	            .addAsLibraries(lib)
-	            .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
-	            .setWebXML("web.xml")
+	            .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
 	            ;
 	         
 	        System.out.println(jar.toString(true));
@@ -48,22 +43,14 @@ new File("src/test/resources/META-INF/persistence-teste.xml"),
 	        return jar;
 	    }
 	
-	
+	 
 	@Inject
 	EntityManager em;
 	 
 	@Test
 	public void test() {
-	   
-	        Pessoa pessoa = new Pessoa();
-	        pessoa.setNome("JOAO LUIS MOREIRA");
-	        pessoa.save();
-	        System.out.println(pessoa.getId());
-
-	        Pessoa p = (Pessoa) pessoa.em().find(Pessoa.class, 1L);
-	        System.out.println(pessoa.getId());
-
-	        assertNotNull(p);
+		
+	        assertNotNull(em);
 	}
 	
 	

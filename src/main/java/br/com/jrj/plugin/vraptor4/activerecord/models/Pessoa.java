@@ -1,11 +1,8 @@
 package br.com.jrj.plugin.vraptor4.activerecord.models;
 
-import javax.inject.Inject;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import br.com.jrj.plugin.vraptor4.activerecord.JPA;
 import br.com.jrj.plugin.vraptor4.activerecord.Model;
 
 @Entity
@@ -33,8 +30,4 @@ public class Pessoa extends Model {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-    @Inject
-    JPA jpa;
-
 }
