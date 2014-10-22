@@ -42,10 +42,12 @@
 					</execution>
 				</executions>
 				<configuration>
+					<appendAssemblyId>false</appendAssemblyId>
 					<archive>
+						<addMavenDescriptor>false</addMavenDescriptor>
 						<manifestEntries>
-							<Premain-Class>br.com.jrj.plugin.vraptor4.activerecord.instrumentacao.ActiveRecordAgent</Premain-Class>
-							<Agent-Class>br.com.jrj.plugin.vraptor4.activerecord.instrumentacao.ActiveRecordAgent</Agent-Class>
+							<Premain-Class>br.com.jrj.plugin.vraptor4.activerecord.agent.ActiveRecordAgent</Premain-Class>
+							<Agent-Class>br.com.jrj.plugin.vraptor4.activerecord.agent.ActiveRecordAgent</Agent-Class>
 							<Can-Redefine-Classes>true</Can-Redefine-Classes>
 							<Can-Retransform-Classes>true</Can-Retransform-Classes>
 						</manifestEntries>
@@ -59,72 +61,8 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.17</version>
 			</plugin>
-			<plugin>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>unpack</id>
-						<phase>process-test-classes</phase>
-						<goals>
-							<goal>unpack</goal>
-						</goals>
-						<configuration>
-							<artifactItems>
-								<artifactItem>
-									<groupId>org.jboss.as</groupId>
-									<artifactId>jboss-as-dist</artifactId>
-									<version>7.1.1.Final</version>
-									<type>zip</type>
-									<overWrite>false</overWrite>
-									<outputDirectory>target</outputDirectory>
-								</artifactItem>
-							</artifactItems>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 
-		<pluginManagement>
-			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
-					only. It has no influence on the Maven build itself. -->
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											org.apache.maven.plugins
-										</groupId>
-										<artifactId>
-											maven-dependency-plugin
-										</artifactId>
-										<versionRange>
-											[2.0,)
-										</versionRange>
-										<goals>
-											<goal>unpack</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-								<!-- <pluginExecution> <pluginExecutionFilter> <groupId> org.codehaus.mojo 
-									</groupId> <artifactId> aspectj-maven-plugin </artifactId> <versionRange> 
-									[0.0,) </versionRange> <goals> <goal>compile</goal> <goal>test-compile</goal> 
-									</goals> </pluginExecutionFilter> <action> <ignore></ignore> </action> </pluginExecution> -->
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 
 	</build>
 
@@ -198,43 +136,6 @@
 		</dependency>
 
 			<dependency>
-			<groupId>org.jboss.arquillian.junit</groupId>
-			<artifactId>arquillian-junit-container</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.arquillian.container</groupId>
-			<artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
-			<version>1.0.0.CR3</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.weld</groupId>
-			<artifactId>weld-core</artifactId>
-			<version>1.1.5.Final</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
-			<version>1.6.4</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.shrinkwrap.resolver</groupId>
-			<artifactId>shrinkwrap-resolver-api</artifactId>
-			<version>2.0.0-alpha-5</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.shrinkwrap.resolver</groupId>
-			<artifactId>shrinkwrap-resolver-impl-maven</artifactId>
-			<version>2.0.0-alpha-5</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>4.3.6.Final</version>
@@ -245,21 +146,6 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>4.3.6.Final</version>
-			<scope>test</scope>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.jboss.shrinkwrap.resolver</groupId>
-			<artifactId>shrinkwrap-resolver-api-maven</artifactId>
-			<version>2.0.0-alpha-5</version>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>br.com.jrj.plugin</groupId>
-			<artifactId>vraptor4-activerecord-agent</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 

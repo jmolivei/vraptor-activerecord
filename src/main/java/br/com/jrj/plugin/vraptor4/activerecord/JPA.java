@@ -11,6 +11,8 @@ import javax.persistence.Persistence;
 @ApplicationScoped
 public class JPA {
 	
+	private static EntityManager em;
+	
 	public JPA() {
 		
 	}
@@ -27,7 +29,8 @@ public class JPA {
 	public EntityManager
 	criaEntityManager(EntityManagerFactory factory) {
 		
-		return factory.createEntityManager();
+		this.em = factory.createEntityManager();
+		return em;
 	}
 
 	public void fechaManager(@Disposes EntityManager manager) {
@@ -37,6 +40,12 @@ public class JPA {
 	public void
 	fechaFactory(@Disposes EntityManagerFactory factory) {
 		factory.close();
+	}
+
+	public static EntityManager em() {
+		// TODO Auto-generated method stub
+		return em;
+		
 	}
 	
 	

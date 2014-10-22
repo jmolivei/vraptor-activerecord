@@ -8,14 +8,17 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import br.com.jrj.plugin.vraptor4.activerecord.FabricaJPA;
 
-public class FabricaJPATest {
+@RunWith(Arquillian.class)
+public class FabricaJPAA {
 
 	 @Deployment
 	    public static JavaArchive createDeployment() {
