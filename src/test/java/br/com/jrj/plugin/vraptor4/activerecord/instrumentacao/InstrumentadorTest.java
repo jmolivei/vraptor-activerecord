@@ -22,12 +22,12 @@ import br.com.jrj.plugin.vraptor4.activerecord.models.Pessoa;
 
 
 public class InstrumentadorTest {
-
+	@Inject Instrumentador instrumentacao;
 
 	@Test
 	public void test() throws Exception {
-//		instrumentacao.start();
-//		Thread.sleep(6000L);
+		instrumentacao.start();
+ 		Thread.sleep(6000L);
 		assertEquals(null, Pessoa.findAll());
 		
 		
