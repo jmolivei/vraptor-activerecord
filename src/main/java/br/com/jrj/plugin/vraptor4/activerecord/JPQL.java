@@ -255,6 +255,17 @@ public class JPQL {
         prop = (prop.charAt(0) + "").toLowerCase() + prop.substring(1);
         return prop;
     }
-    public static JPQL instance = null;
+    
+    private static JPQL instance = 	null;
+    
+    private JPQL()  {
+    	
+    }
+    
+    public static JPQL getInstance() {
+        if (instance == null)
+           instance = new JPQL();
+        return instance;
+     }
 }
 

@@ -1,5 +1,6 @@
 package br.com.jrj.plugin.vraptor4.activerecord.models;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;

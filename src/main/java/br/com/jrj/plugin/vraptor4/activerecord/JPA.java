@@ -26,21 +26,20 @@ public class JPA {
 
 	@Produces
 	@RequestScoped
-	public EntityManager
+	public  EntityManager
 	criaEntityManager(EntityManagerFactory factory) {
-		
-		this.em = factory.createEntityManager();
+		em = factory.createEntityManager();
 		return em;
 	}
 
-	public void fechaManager(@Disposes EntityManager manager) {
+ 	public void fechaManager(@Disposes EntityManager manager) {
 		manager.close();
 	}
 
 	public void
 	fechaFactory(@Disposes EntityManagerFactory factory) {
 		factory.close();
-	}
+	}  
 
 	public static EntityManager em() {
 		// TODO Auto-generated method stub

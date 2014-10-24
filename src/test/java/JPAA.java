@@ -1,4 +1,4 @@
-package br.com.jrj.plugin.vraptor4.activerecord.models;
+
 
 import static org.junit.Assert.assertNotNull;
 
@@ -20,9 +20,10 @@ import org.junit.runner.RunWith;
 import br.com.jrj.plugin.vraptor4.activerecord.JPA;
 import br.com.jrj.plugin.vraptor4.activerecord.JPABase;
 import br.com.jrj.plugin.vraptor4.activerecord.Model;
+import br.com.jrj.plugin.vraptor4.activerecord.models.Pessoa;
 
 @RunWith(Arquillian.class)
-public class JPATest {
+public class JPAA {
 
 	 @Deployment
 	    public static JavaArchive createDeployment() {
